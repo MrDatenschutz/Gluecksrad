@@ -11,13 +11,13 @@
       background: #0f172a;
       color: #e5e7eb;
       font-family: 'Segoe UI', sans-serif;
-      text-align: center;
     }
 
     header {
       padding: 30px 0;
       background: #020617;
       border-bottom: 1px solid #1e293b;
+      text-align: center;
     }
 
     h1 {
@@ -26,14 +26,36 @@
       margin: 0;
     }
 
+    .main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      padding: 40px;
+    }
+
     .container {
-      max-width: 800px;
-      margin: 40px auto;
+      flex: 1 1 400px;
+      max-width: 600px;
       background: #020617;
       padding: 30px;
       border-radius: 12px;
       border: 1px solid #1e293b;
       text-align: center;
+    }
+
+    .image-box {
+      flex: 1 1 300px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .image-box img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 12px;
+      border: 1px solid #1e293b;
     }
 
     p {
@@ -73,14 +95,16 @@
     }
 
     .back-btn {
-      display: inline-block;
-      margin-top: 30px;
+      display: block;
+      margin: 40px auto;
       padding: 12px 20px;
       background: #38bdf8;
       color: #000;
       font-weight: bold;
       border-radius: 8px;
       text-decoration: none;
+      text-align: center;
+      width: fit-content;
     }
 
     .back-btn:hover {
@@ -95,18 +119,22 @@
     <h1>Variables Glücksrad</h1>
   </header>
 
-  <div class="container">
+  <div class="main">
 
-    <p>
-      Gib mehrere Begriffe ein, getrennt durch ein Semikolon <strong>;</strong><br>
-      Beispiel: <em>Pizza; Burger; Döner; Salat</em>
-    </p>
+    <div class="container">
+      <p>
+        Gib mehrere Begriffe ein, getrennt durch ein Semikolon <strong>;</strong><br>
+        Beispiel: <em>Pizza; Burger; Döner; Salat</em>
+      </p>
 
-    <input id="inputValues" placeholder="Begriffe eingeben... (mit ; trennen)">
+      <input id="inputValues" placeholder="Begriffe eingeben... (mit ; trennen)">
+      <button onclick="spin()">Zufällig auswählen</button>
+      <div class="output" id="outputField">(Noch keine Auswahl)</div>
+    </div>
 
-    <button onclick="spin()">Zufällig auswählen</button>
-
-    <div class="output" id="outputField">(Noch keine Auswahl)</div>
+    <div class="image-box">
+      <img src="logo_rad.png" alt="Glücksrad">
+    </div>
 
   </div>
 
@@ -121,7 +149,6 @@
         return;
       }
 
-      // Begriffe anhand von ; trennen
       const parts = raw.split(";").map(x => x.trim()).filter(x => x.length > 0);
 
       if (parts.length === 0) {
@@ -129,13 +156,10 @@
         return;
       }
 
-      // Zufälligen Begriff auswählen
       const random = parts[Math.floor(Math.random() * parts.length)];
-
       document.getElementById("outputField").innerText = random;
     }
   </script>
 
 </body>
 </html>
-
