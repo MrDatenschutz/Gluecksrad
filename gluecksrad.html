@@ -42,6 +42,36 @@
       margin-bottom: 20px;
     }
 
+    input, button {
+      padding: 12px;
+      width: 90%;
+      max-width: 500px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #1e293b;
+      background: #0f172a;
+      color: #e5e7eb;
+      font-size: 1rem;
+    }
+
+    button {
+      background: #38bdf8;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0ea5e9;
+    }
+
+    .output {
+      margin-top: 25px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #38bdf8;
+    }
+
     .back-btn {
       display: inline-block;
       margin-top: 30px;
@@ -68,21 +98,43 @@
   <div class="container">
 
     <p>
-      Hier entsteht dein variables Glücksrad.  
-      Du kannst später beliebige Felder, Farben und Optionen einbauen.
+      Gib mehrere Begriffe ein, getrennt durch ein Semikolon <strong>;</strong><br>
+      Beispiel: <em>Pizza; Burger; Döner; Salat</em>
     </p>
 
-    <!-- =============================== -->
-    <!--   HIER KOMMT SPÄTER DAS RAD     -->
-    <!-- =============================== -->
-    <p style="color:#38bdf8; font-weight:bold;">
-      (Glücksrad folgt – Platzhalter)
-    </p>
-    <!-- =============================== -->
+    <input id="inputValues" placeholder="Begriffe eingeben... (mit ; trennen)">
+
+    <button onclick="spin()">Zufällig auswählen</button>
+
+    <div class="output" id="outputField">(Noch keine Auswahl)</div>
 
   </div>
 
   <a href="index.html" class="back-btn">Zur Startseite</a>
+
+  <script>
+    function spin() {
+      const raw = document.getElementById("inputValues").value.trim();
+
+      if (!raw) {
+        document.getElementById("outputField").innerText = "Bitte Begriffe eingeben!";
+        return;
+      }
+
+      // Begriffe anhand von ; trennen
+      const parts = raw.split(";").map(x => x.trim()).filter(x => x.length > 0);
+
+      if (parts.length === 0) {
+        document.getElementById("outputField").innerText = "Keine gültigen Begriffe gefunden.";
+        return;
+      }
+
+      // Zufälligen Begriff auswählen
+      const random = parts[Math.floor(Math.random() * parts.length)];
+
+      document.getElementById("outputField").innerText = random;
+    }
+  </script>
 
 </body>
 </html>
