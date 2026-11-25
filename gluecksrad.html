@@ -1,166 +1,385 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Variables Glücksrad</title>
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #0f172a;
-      color: #e5e7eb;
-      font-family: 'Segoe UI', sans-serif;
-    }
+<meta charset="UTF-8">
 
-    header {
-      padding: 30px 0;
-      background: #020617;
-      border-bottom: 1px solid #1e293b;
-      text-align: center;
-    }
+<title>Variables Glücksrad</title>
 
-    h1 {
-      font-size: 2.8rem;
-      color: #38bdf8;
-      margin: 0;
-    }
+<style>
 
-    .main {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 40px;
-      padding: 40px;
-    }
+:root{
 
-    .container {
-      flex: 1 1 400px;
-      max-width: 600px;
-      background: #020617;
-      padding: 30px;
-      border-radius: 12px;
-      border: 1px solid #1e293b;
-      text-align: center;
-    }
+ --background:#0f172a;
+ --surface:#111e35;
+ --surface-light:#17263f;
 
-    .image-box {
-      flex: 1 1 300px;
-      max-width: 400px;
-      text-align: center;
-    }
+ --accent:#38bdf8;
+ --accent-hover:#7dd3fc;
 
-    .image-box img {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 12px;
-      border: 1px solid #1e293b;
-    }
+ --text:#e5e7eb;
+ --muted:#94a3b8;
 
-    p {
-      color: #9ca3af;
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-    }
+ --border:rgba(148,163,184,.15);
 
-    input, button {
-      padding: 12px;
-      width: 90%;
-      max-width: 500px;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: 1px solid #1e293b;
-      background: #0f172a;
-      color: #e5e7eb;
-      font-size: 1rem;
-    }
+}
 
-    button {
-      background: #38bdf8;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-    }
+*{
+ box-sizing:border-box;
+}
 
-    button:hover {
-      background: #0ea5e9;
-    }
+body{
 
-    .output {
-      margin-top: 25px;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #38bdf8;
-    }
+ margin:0;
 
-    .back-btn {
-      display: block;
-      margin: 40px auto;
-      padding: 12px 20px;
-      background: #38bdf8;
-      color: #000;
-      font-weight: bold;
-      border-radius: 8px;
-      text-decoration: none;
-      text-align: center;
-      width: fit-content;
-    }
+ min-height:100vh;
 
-    .back-btn:hover {
-      background: #0ea5e9;
-    }
-  </style>
+ font-family:'Segoe UI',sans-serif;
+
+ background:#0f172a;
+
+ background-image:
+ radial-gradient(
+ ellipse at 50% 0%,
+ rgba(14,165,233,.09),
+ transparent 55%
+ );
+
+ color:var(--text);
+
+}
+
+header{
+
+ padding:40px 20px 20px;
+
+ text-align:center;
+
+}
+
+h1{
+
+ font-size:3rem;
+
+ color:var(--accent);
+
+ margin:0;
+
+}
+
+.main{
+
+ display:flex;
+
+ flex-wrap:wrap;
+
+ justify-content:center;
+
+ align-items:flex-start;
+
+ gap:30px;
+
+ padding:20px;
+
+ max-width:1200px;
+
+ margin:auto;
+
+}
+
+.container{
+
+ flex:1 1 450px;
+
+ max-width:650px;
+
+ background:var(--surface);
+
+ padding:30px;
+
+ border-radius:16px;
+
+ border:1px solid var(--border);
+
+}
+
+.image-box{
+
+ flex:1 1 320px;
+
+ max-width:350px;
+
+ text-align:center;
+
+}
+
+.image-box img{
+
+ width:100%;
+
+ border-radius:16px;
+
+ border:1px solid var(--border);
+
+ background:var(--surface);
+
+}
+
+p{
+
+ color:var(--muted);
+
+ font-size:1.05rem;
+
+ line-height:1.6;
+
+}
+
+input{
+
+ width:100%;
+
+ padding:12px;
+
+ margin-top:10px;
+
+ border-radius:10px;
+
+ border:1px solid var(--border);
+
+ background:var(--surface-light);
+
+ color:var(--text);
+
+ font-size:1rem;
+
+ outline:none;
+
+ transition:.2s ease;
+
+}
+
+input:focus{
+
+ border-color:
+ rgba(56,189,248,.4);
+
+ box-shadow:
+ 0 0 10px
+ rgba(56,189,248,.15);
+
+}
+
+button{
+
+ margin-top:15px;
+
+ padding:12px 20px;
+
+ border:none;
+
+ border-radius:10px;
+
+ background:#0ea5e9;
+
+ color:#082f49;
+
+ font-weight:700;
+
+ font-size:1rem;
+
+ cursor:pointer;
+
+ transition:.2s ease;
+
+}
+
+button:hover{
+
+ background:var(--accent-hover);
+
+ box-shadow:
+ 0 0 12px
+ rgba(56,189,248,.25);
+
+}
+
+.output{
+
+ margin-top:25px;
+
+ font-size:1.7rem;
+
+ font-weight:bold;
+
+ color:var(--accent);
+
+ text-align:center;
+
+ min-height:50px;
+
+}
+
+.bottom-actions{
+
+ display:flex;
+
+ justify-content:center;
+
+ margin-top:30px;
+
+}
+
+.back-btn{
+
+ display:inline-block;
+
+ background:#0ea5e9;
+
+ color:#082f49;
+
+ text-decoration:none;
+
+ padding:12px 20px;
+
+ border-radius:10px;
+
+ font-weight:700;
+
+ transition:.2s ease;
+
+}
+
+.back-btn:hover{
+
+ background:var(--accent-hover);
+
+ transform:translateY(-1px);
+
+}
+
+footer{
+
+ margin-top:60px;
+
+ text-align:center;
+
+ color:#64748b;
+
+ padding-bottom:30px;
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-  <header>
-    <h1>Variables Glücksrad</h1>
-  </header>
+<header>
 
-  <div class="main">
+ <h1>Variables Glücksrad</h1>
 
-    <div class="container">
-      <p>
-        Gib mehrere Begriffe ein, getrennt durch ein Semikolon <strong>;</strong><br>
-        Beispiel: <em>Pizza; Burger; Döner; Salat</em>
-      </p>
+</header>
 
-      <input id="inputValues" placeholder="Begriffe eingeben... (mit ; trennen)">
-      <button onclick="spin()">Zufällig auswählen</button>
-      <div class="output" id="outputField">(Noch keine Auswahl)</div>
-    </div>
+<div class="main">
 
-    <div class="image-box">
-      <img src="logo_rad.png" alt="Glücksrad">
-    </div>
+ <div class="container">
 
-  </div>
+ <p>
 
-  <!-- KORRIGIERTER LINK -->
-  <a href="https://mrdatenschutz.github.io/Nexora/index.html" class="back-btn">Zur Startseite</a>
+ Gib mehrere Begriffe ein, getrennt durch ein Semikolon <strong>;</strong><br><br>
 
-  <script>
-    function spin() {
-      const raw = document.getElementById("inputValues").value.trim();
+ Beispiel:
 
-      if (!raw) {
-        document.getElementById("outputField").innerText = "Bitte Begriffe eingeben!";
-        return;
-      }
+ <em>
 
-      const parts = raw.split(";").map(x => x.trim()).filter(x => x.length > 0);
+ Pizza; Burger; Döner; Salat
 
-      if (parts.length === 0) {
-        document.getElementById("outputField").innerText = "Keine gültigen Begriffe gefunden.";
-        return;
-      }
+ </em>
 
-      const random = parts[Math.floor(Math.random() * parts.length)];
-      document.getElementById("outputField").innerText = random;
-    }
-  </script>
+ </p>
+
+ <input
+ id="inputValues"
+ placeholder="Begriffe eingeben... (mit ; trennen)">
+
+ <button onclick="spin()">
+
+ Zufällig auswählen
+
+ </button>
+
+ <div
+ class="output"
+ id="outputField">
+
+ (Noch keine Auswahl)
+
+ </div>
+
+ </div>
+
+ <div class="image-box">
+
+ <img
+ src="logo_rad.png"
+ alt="Glücksrad">
+
+ </div>
+
+</div>
+
+<div class="bottom-actions">
+
+ <a
+ href="https://mrdatenschutz.github.io/Nexora/index.html"
+ class="back-btn">
+
+ Zur Startseite
+
+ </a>
+
+</div>
+
+<footer>
+
+© Nexora – Variables Glücksrad
+
+</footer>
+
+<script>
+
+function spin() {
+
+ const raw = document.getElementById("inputValues").value.trim();
+
+ if (!raw) {
+
+ document.getElementById("outputField").innerText = "Bitte Begriffe eingeben!";
+
+ return;
+
+ }
+
+ const parts = raw.split(";").map(x => x.trim()).filter(x => x.length > 0);
+
+ if (parts.length === 0) {
+
+ document.getElementById("outputField").innerText = "Keine gültigen Begriffe gefunden.";
+
+ return;
+
+ }
+
+ const random = parts[Math.floor(Math.random() * parts.length)];
+
+ document.getElementById("outputField").innerText = random;
+
+}
+
+</script>
 
 </body>
 </html>
